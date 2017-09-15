@@ -19,9 +19,25 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
+        "../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css",
+        "../src/assets/css/fullcalendar.min.css",
+        "../src/assets/css/spinners.css",
+        "../src/assets/css/red.css",
+        "../src/assets/css/style.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/popper.js/dist/umd/popper.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.min.js",
+        "../src/assets/js/jquery-ui.min.js",
+        "../src/assets/js/moment.min.js",
+        "../src/assets/js/fullcalendar.min.js",
+        "../src/assets/js/cal-init.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

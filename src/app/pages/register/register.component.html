@@ -1,0 +1,54 @@
+<section id="wrapper">
+  <div class="login-register" style="background-image:url(../assets/images/background/login-register.jpg);">
+    <div class="login-box card">
+      <div class="card-body">
+        <form class="form-horizontal form-material" id="loginform">
+          <h3 class="box-title m-b-20">Sign Up</h3>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input class="form-control" type="text" required="" placeholder="Name" name="name" [(ngModel)]="model.name" #name="ngModel">
+            </div>
+          </div>
+          <div class="form-group ">
+            <div class="col-xs-12">
+              <input class="form-control" type="text" required="" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel">
+            </div>
+          </div>
+          <div class="form-group ">
+            <div class="col-xs-12">
+              <input class="form-control" type="password" required="" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input class="form-control" type="password" required="" placeholder="Confirm Password" name="repassword" [(ngModel)]="model.repassword" #repassword="ngModel">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="checkbox checkbox-success p-t-0 p-l-10">
+                <input id="checkbox-signup" type="checkbox" name="terms" [(ngModel)]="model.terms" #terms="ngModel">
+                <label for="checkbox-signup"> I agree to all <a href="#">Terms</a></label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group has-danger">
+            <small class="form-control-feedback"> {{error}} </small>
+          </div>
+          <div class="form-group text-center m-t-20">
+            <div class="col-xs-12">
+              <button [disabled]="!isValid()" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" (click)="registerUser()">Sign Up</button>
+            </div>
+          </div>
+          <div class="form-group m-b-0">
+            <div class="col-sm-12 text-center">
+              <p>Already have an account? <a routerLink="/login" class="text-info m-l-5"><b>Sign In</b></a></p>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</section>
