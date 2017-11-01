@@ -23,6 +23,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css",
         "../src/assets/css/fullcalendar.min.css",
+        "../src/assets/css/jquery.dataTables.min.css",
         "../src/assets/css/spinners.css",
         "../src/assets/css/red.css",
         "../src/assets/css/style.css",

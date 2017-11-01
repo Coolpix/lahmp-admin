@@ -22,12 +22,12 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">TEMPORADA 2017</li>
+                <li class="nav-small-cap">TEMPORADA {{seasonActive?.year}}</li>
                 <li>
                   <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/seasons"><i class="fa fa-vcard"></i><span class="hide-menu"> Temporadas</span></a>
                 </li>
                 <li>
-                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/players"><i class="fa fa-vcard"></i><span class="hide-menu"> Jugadores</span></a>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/seasons/{{ seasonActive?.id }}/players"><i class="fa fa-vcard"></i><span class="hide-menu"> Jugadores</span></a>
                 </li>
                 <li>
                   <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-microchip"></i><span class="hide-menu"> Equipos</span></a>

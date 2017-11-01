@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ScriptService {
@@ -7,8 +7,8 @@ export class ScriptService {
   public loadScripts(urlScript) {
     this.loadAPI = new Promise((resolve) => {
       console.log('resolving promise...');
-      let scriptNotExists = $('script[src*="'+urlScript+'"]').length == 0;
-      if (scriptNotExists){
+      const scriptNotExists = $('script[src*="' + urlScript + '"]').length == 0;
+      if (scriptNotExists) {
         this.loadScript(urlScript);
       }else{
         console.log('Script already exists.');
@@ -19,8 +19,8 @@ export class ScriptService {
   }
 
   public loadScript(urlScript) {
-    console.log('preparing to load...')
-    let node = document.createElement('script');
+    console.log('preparing to load...');
+    const node = document.createElement('script');
     node.src = urlScript;
     node.type = 'text/javascript';
     node.async = true;
@@ -28,7 +28,7 @@ export class ScriptService {
     document.getElementsByTagName('head')[0].appendChild(node);
   }
 
-  public removeScript(urlScript){
-    $('script[src*="'+urlScript+'"]').remove();
+  public removeScript(urlScript) {
+    $('script[src*="' + urlScript + '"]').remove();
   }
 }

@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {SeasonService} from "../../services/season.service";
-import {Season} from "../../models/season";
+import {AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {SeasonService} from '../../services/season.service';
+import {Season} from '../../models/season';
+import {ScriptService} from '../../services/script.service';
 
 @Component({
   selector: 'app-seasons',
@@ -9,7 +10,9 @@ import {Season} from "../../models/season";
   styleUrls: ['./seasons.component.css']
 })
 
-export class SeasonsComponent implements OnInit{
+export class SeasonsComponent implements OnInit, AfterViewChecked {
+
+  model: any = {};
   get seasonActive(): Season {
     return this._seasonActive;
   }
@@ -25,30 +28,39 @@ export class SeasonsComponent implements OnInit{
     this._seasons = value;
   }
 
-  private _seasons:Season;
-  private _seasonActive:Season;
+  private _seasons: Season;
+  private _seasonActive: Season;
   objLoaderStatus: boolean;
 
   constructor(
     private router: Router,
-    private seasonService: SeasonService
+    private seasonService: SeasonService,
+    private scriptService: ScriptService
   ) { }
 
   ngOnInit(): void {
     this.objLoaderStatus = true;
     this.seasonService.getSeasons().subscribe(
       result => {
-        this.seasonActive = result[0];
         this.seasons = result;
         this.objLoaderStatus = false;
       },
       err => {
         console.log(err.statusText);
       }
-    )
+    );
   }
 
-  goToSeason(seasonId: Number){
-    this.router.navigate(['/seasons/'+seasonId]);
+  ngAfterViewChecked(): void {
+    this.scriptService.loadScripts('../../assets/js/jquery.dataTables.min.js');
+    this.scriptService.loadScripts('../../assets/js/dataTableInit.js');
+  }
+
+  goToSeason(seasonId: Number) {
+    this.router.navigate(['/seasons/' + seasonId]);
+  }
+
+  saveSeason() {
+    console.log(this.model.name);
   }
 }

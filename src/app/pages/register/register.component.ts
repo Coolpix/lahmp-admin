@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ScriptService} from "../../services/script.service";
-import {isViewDebugError} from "@angular/core/src/view/errors";
-import {AuthenticationService} from "../../services/authentication.service";
-import {Router} from "@angular/router";
+import {ScriptService} from '../../services/script.service';
+import {AuthenticationService} from '../../services/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
   model: any = {};
-  error: string = '';
+  error = '';
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
@@ -22,17 +21,17 @@ export class RegisterComponent implements OnInit {
     this.scriptService.loadScripts('../../assets/js/custom.js');
   }
 
-  registerUser(){
+  registerUser() {
     this.error = '';
     this.authenticationService.register(this.model.name, this.model.email, this.model.password).subscribe(
       result => {
         this.router.navigate(['/login']);
       },
       err => {
-        let error = err.json();
+        const error = err.json();
         this.error = error[0];
       }
-    )
+    );
   }
 
   isValid(): boolean{

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from "../../services/authentication.service";
-import {SeasonService} from "../../services/season.service";
-import {Season} from "../../models/season";
+import {AuthenticationService} from '../../services/authentication.service';
+import {SeasonService} from '../../services/season.service';
+import {Season} from '../../models/season';
 
 @Component({
   selector: 'ma-navigation',
   templateUrl: './navigation.component.html'
 })
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit {
 
   get seasonActive(): Season {
     return this._seasonActive;
@@ -25,17 +25,10 @@ export class NavigationComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    this.seasonService.getSeasonActive().subscribe(
-      result => {
-        this.seasonActive = result[0];
-      },
-      err => {
-        console.log(err.statusText);
-      }
-    )
+    this.seasonActive = this.seasonService.getSeasonActive();
   }
 
-  logout(){
+  logout() {
     this.authenticationService.logout();
   }
 

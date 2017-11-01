@@ -21,7 +21,7 @@ export class PlayersComponent implements OnInit {
       err => {
 
       }
-    )
+    );
   }
 
   get players(): Player {

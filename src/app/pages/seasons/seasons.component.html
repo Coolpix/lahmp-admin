@@ -1,4 +1,4 @@
-<div class="preloader">
+<div class="preloader" xmlns="">
   <svg class="circular" viewBox="25 25 50 50">
     <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
 </div>
@@ -27,9 +27,19 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
       <breadcrumb></breadcrumb>
+      <div class="row page-titles">
+        <div class="col-md-6 col-4 align-self-center">
+
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+          <button class="btn pull-right hidden-sm-down btn-success" alt="default" data-toggle="modal" data-target="#responsive-modal">
+            <i class="mdi mdi-plus-circle"></i> Nueva temporada
+          </button>
+        </div>
+      </div>
       <div class="row">
         <!-- .col -->
-        <div class="col-md-4 col-lg-4 col-xlg-4" *ngFor="let season of seasons; let i = index">
+<!--        <div class="col-md-4 col-lg-4 col-xlg-4 align-self-center" *ngFor="let season of seasons; let i = index">
           <div class="card card-body">
             <div class="row">
               <div class="col-md-8 col-lg-9" (click)="goToSeason(season.year)">
@@ -37,8 +47,40 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
         <!-- /.col -->
+        <div class="card">
+          <div class="card-block">
+            <h4 class="card-title">Data Export</h4>
+            <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+            <div class="table-responsive m-t-40">
+              <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                  <th>Nombre</th>
+                  <th></th>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr *ngFor="let season of seasons; let i = index">
+                  <td>Temporada {{season.year}}</td>
+                  <td>
+                    <button class="btn pull-right hidden-sm-down btn-success" alt="default" data-toggle="modal" data-target="#responsive-modal" (click)="goToSeason(season.id)">
+                      <i class="mdi mdi-plus-circle"></i> Entrar
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -58,4 +100,26 @@
   <!-- ============================================================== -->
   <!-- End Page wrapper  -->
   <!-- ============================================================== -->
+</div>
+<div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Creación de nueva temporada</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="season-name" class="control-label">Nombre:</label>
+            <input type="text" class="form-control" id="season-name" name="name" [(ngModel)]="model.name" #name="ngModel">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger waves-effect waves-light" (click)="saveSeason()">Crear temporada</button>
+      </div>
+    </div>
+  </div>
 </div>

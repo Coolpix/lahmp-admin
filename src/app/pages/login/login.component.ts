@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from "../../services/authentication.service";
-import {Router} from "@angular/router";
-import {UserService} from "../../services/user.service";
-import {ScriptService} from "../../services/script.service";
+import {AuthenticationService} from '../../services/authentication.service';
+import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
+import {ScriptService} from '../../services/script.service';
+import {SeasonService} from "../../services/season.service";
+import {Season} from "../../models/season";
+import {Observable} from "rxjs/Observable";
+import {isNull} from "util";
 
 @Component({
   selector: 'login',
@@ -11,13 +15,15 @@ import {ScriptService} from "../../services/script.service";
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  error: string = '';
+  error = '';
   loading: boolean;
+  seasonActive: Season;
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
               private userService: UserService,
-              private scriptService: ScriptService) {
+              private scriptService: ScriptService,
+              private seasonService: SeasonService) {
   }
 
   ngOnInit(): void {
@@ -35,7 +41,20 @@ export class LoginComponent implements OnInit {
           if (result === true) {
             this.userService.getUser().subscribe(
               result => {
-                this.router.navigate(['/seasons/2017']);
+                this.seasonActive = this.seasonService.getSeasonActive();
+                if (!isNull(this.seasonActive)) {
+                  this.router.navigate(['/seasons/' + this.seasonActive.id]);
+                }else {
+                  this.seasonService.getInitSeasonActive().subscribe(
+                    result => {
+                      this.router.navigate(['/seasons/' + result.id]);
+                    },
+                    err => {
+                      console.log(err);
+                    }
+                  );
+                }
+
               }
             );
           } else {
@@ -52,17 +71,16 @@ export class LoginComponent implements OnInit {
   sendEmail() {
     this.authenticationService.sendEmail(this.model.email).subscribe(
       result => {
-        debugger;
-        if (result.data.exception){
+        if (result.data.exception) {
           this.error = result.data.exception;
-        }else{
-          this.error = "Correo mandado";
+        } else {
+          this.error = 'Correo mandado';
         }
       },
       err => {
         this.error = err.json().message;
       }
-    )
+    );
   }
 
 }
