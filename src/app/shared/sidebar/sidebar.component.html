@@ -22,15 +22,15 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">TEMPORADA {{seasonActive?.year}}</li>
+                <li class="nav-small-cap">TEMPORADA {{season?.year}}</li>
                 <li>
                   <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/seasons"><i class="fa fa-vcard"></i><span class="hide-menu"> Temporadas</span></a>
                 </li>
                 <li>
-                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/seasons/{{ seasonActive?.id }}/players"><i class="fa fa-vcard"></i><span class="hide-menu"> Jugadores</span></a>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/seasons/{{ season?.id }}/players"><i class="fa fa-vcard"></i><span class="hide-menu"> Jugadores</span></a>
                 </li>
                 <li>
-                  <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-microchip"></i><span class="hide-menu"> Equipos</span></a>
+                  <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu"> Equipos</span></a>
                   <ul aria-expanded="false" class="collapse">
                     <li><a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/teams/verde"> Verde</a></li>
                     <li><a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/teams/rojo"> Rojo</a></li>
@@ -41,7 +41,7 @@
                   </ul>
                 </li>
                 <li>
-                  <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-microchip"></i><span class="hide-menu"> Jornadas</span></a>
+                  <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-table-column-plus-after"></i><span class="hide-menu"> Jornadas</span></a>
                   <ul aria-expanded="false" class="collapse">
                     <li><a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/round/1"> Jornada 1</a></li>
                   </ul>

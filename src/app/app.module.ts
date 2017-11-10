@@ -11,7 +11,7 @@ import {AuthGuard} from "./guards/auth.guard";
 import {SeasonService} from "./services/season.service";
 import {ScriptService} from "./services/script.service";
 import {PlayerService} from "./services/player.service";
-import { PlayerDetailComponent } from './pages/player-detail/player-detail.component';
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [

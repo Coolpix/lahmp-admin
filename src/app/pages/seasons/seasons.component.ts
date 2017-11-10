@@ -1,8 +1,9 @@
-import {AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SeasonService} from '../../services/season.service';
 import {Season} from '../../models/season';
 import {ScriptService} from '../../services/script.service';
+import {isNull} from 'util';
 
 @Component({
   selector: 'app-seasons',
@@ -13,13 +14,8 @@ import {ScriptService} from '../../services/script.service';
 export class SeasonsComponent implements OnInit, AfterViewChecked {
 
   model: any = {};
-  get seasonActive(): Season {
-    return this._seasonActive;
-  }
+  seasonActive: Season;
 
-  set seasonActive(value: Season) {
-    this._seasonActive = value;
-  }
   get seasons(): Season {
     return this._seasons;
   }
@@ -29,7 +25,6 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
   }
 
   private _seasons: Season;
-  private _seasonActive: Season;
   objLoaderStatus: boolean;
 
   constructor(
@@ -49,6 +44,19 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
         console.log(err.statusText);
       }
     );
+
+    if (!isNull(this.seasonService.getSeasonActive())) {
+      this.seasonActive = this.seasonService.getSeasonActive();
+    } else {
+      this.seasonService.getInitSeasonActive().subscribe(
+        result => {
+          this.seasonActive = result;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   ngAfterViewChecked(): void {
@@ -61,6 +69,7 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
   }
 
   saveSeason() {
+
     console.log(this.model.name);
   }
 }

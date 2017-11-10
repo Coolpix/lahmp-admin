@@ -7,7 +7,7 @@ export class ScriptService {
   public loadScripts(urlScript) {
     this.loadAPI = new Promise((resolve) => {
       console.log('resolving promise...');
-      const scriptNotExists = $('script[src*="' + urlScript + '"]').length == 0;
+      const scriptNotExists = 0 === $('script[src*="' + urlScript + '"]').length;
       if (scriptNotExists) {
         this.loadScript(urlScript);
       }else{

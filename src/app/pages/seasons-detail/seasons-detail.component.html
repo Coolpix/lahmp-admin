@@ -10,11 +10,11 @@
   <!-- Topbar header - style you can find in pages.scss -->
   <!-- ============================================================== -->
 
-  <ma-navigation class="fixing"></ma-navigation>
+  <ma-navigation class="fixing" [(season)]="seasonActive"></ma-navigation>
   <!-- ============================================================== -->
   <!-- Left Sidebar - style you can find in sidebar.scss  -->
   <!-- ============================================================== -->
-  <ma-sidebar></ma-sidebar>
+  <ma-sidebar [(season)]="seasonActive"></ma-sidebar>
   <!-- ============================================================== -->
   <!-- End Left Sidebar - style you can find in sidebar.scss  -->
   <!-- ============================================================== -->
@@ -190,3 +190,4 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
   </div>
+</div>

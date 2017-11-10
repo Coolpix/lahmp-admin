@@ -10,11 +10,11 @@
   <!-- Topbar header - style you can find in pages.scss -->
   <!-- ============================================================== -->
 
-  <ma-navigation class="fixing"></ma-navigation>
+  <ma-navigation class="fixing" [(season)]="seasonActive"></ma-navigation>
   <!-- ============================================================== -->
   <!-- Left Sidebar - style you can find in sidebar.scss  -->
   <!-- ============================================================== -->
-  <ma-sidebar></ma-sidebar>
+  <ma-sidebar [(season)]="seasonActive"></ma-sidebar>
   <!-- ============================================================== -->
   <!-- End Left Sidebar - style you can find in sidebar.scss  -->
   <!-- ============================================================== -->
@@ -113,6 +113,8 @@
           <div class="form-group">
             <label for="season-name" class="control-label">Nombre:</label>
             <input type="text" class="form-control" id="season-name" name="name" [(ngModel)]="model.name" #name="ngModel">
+            <label for="season-year" class="control-label">Año:</label>
+            <input type="number" class="form-control" id="season-year" name="year" [(ngModel)]="model.year" #name="ngModel">
           </div>
         </form>
       </div>

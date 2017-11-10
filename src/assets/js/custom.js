@@ -38,6 +38,7 @@ $(function () {
     // Theme options
     // ==============================================================
     $(".sidebartoggler").on('click', function () {
+      debugger;
       console.log("Entraaaa");
         if ($("body").hasClass("mini-sidebar")) {
             $("body").trigger("resize");

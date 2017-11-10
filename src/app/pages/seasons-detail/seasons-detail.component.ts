@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SeasonService} from '../../services/season.service';
 import {ScriptService} from '../../services/script.service';
+import {isNull} from 'util';
+import {Season} from "../../models/season";
 
 @Component({
   selector: 'app-seasons-detail',
@@ -10,16 +12,25 @@ import {ScriptService} from '../../services/script.service';
 })
 export class SeasonsDetailComponent implements OnInit {
 
+  seasonActive: Season;
+
   constructor(private route: ActivatedRoute,
-              private seasonService: SeasonService,
-              private scriptService: ScriptService) { }
+              private seasonService: SeasonService) { }
 
   ngOnInit(): void {
-    this.scriptService.loadScripts('../../assets/js/sidebarmenu.js');
-    this.scriptService.loadScripts('../../assets/js/custom.js');
     this.route.params.subscribe(params => {
-      this.seasonService.getSeason(params['id']).subscribe();
+      if (params['id'] !== this.seasonService.getSeasonActive().id.toString()) {
+        this.seasonService.getSeason(params['id']).subscribe(
+          result => {
+            this.seasonActive = result;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      } else {
+        this.seasonActive = this.seasonService.getSeasonActive();
+      }
     });
-
   }
 }
