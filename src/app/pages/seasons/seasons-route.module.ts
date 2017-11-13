@@ -1,12 +1,12 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {SeasonsComponent} from "./seasons.component";
+import {SeasonsComponent} from './seasons.component';
 
 const seasonsRoutes: Routes = [{
   path: '',
   data: {
     title: 'Temporadas',
-    urls: [{title: 'LAHMP',url: '/'},{title: 'Temporadas'}]
+    urls: [{title: 'LAHMP', url: '/'}, {title: 'Temporadas'}]
   },
   component: SeasonsComponent
 }];
