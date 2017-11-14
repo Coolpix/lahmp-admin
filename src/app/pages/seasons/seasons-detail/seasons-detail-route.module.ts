@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SeasonsDetailComponent } from '../seasons-detail/seasons-detail.component';
+import { SeasonsDetailComponent } from './seasons-detail.component';
 
 const seasonsDetailRoutes: Routes = [{
   path: '',

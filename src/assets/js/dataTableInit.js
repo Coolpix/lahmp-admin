@@ -1,4 +1,5 @@
-$(function () {
+//TODO: Arreglar semejante ñapa
+setTimeout(function () {
   "use strict";
   if (!$('#example23').hasClass('dataTable')){
     $('#example23').DataTable({
@@ -8,4 +9,4 @@ $(function () {
       ]
     });
   }
-});
+}, 2000);

@@ -1,5 +1,5 @@
 import {AfterViewChecked, Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {SeasonService} from '../../services/season.service';
 import {Season} from '../../models/season';
 import {ScriptService} from '../../services/script.service';
@@ -12,7 +12,6 @@ import {isNull} from 'util';
 })
 
 export class SeasonsComponent implements OnInit, AfterViewChecked {
-
   model: any = {};
   seasonActive: Season;
 
@@ -30,7 +29,8 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
   constructor(
     private router: Router,
     private seasonService: SeasonService,
-    private scriptService: ScriptService
+    private scriptService: ScriptService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -65,11 +65,12 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
   }
 
   goToSeason(seasonId: Number) {
-    this.router.navigate(['/seasons/' + seasonId]);
+    this.router.navigate([seasonId], { relativeTo: this.route });
   }
 
   saveSeason() {
-
     console.log(this.model.name);
+    console.log(+this.model.year);
   }
+
 }

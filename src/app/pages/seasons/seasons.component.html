@@ -101,12 +101,13 @@
   <!-- End Page wrapper  -->
   <!-- ============================================================== -->
 </div>
+<!-- Modal creacion temporada -->
 <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title">Creación de nueva temporada</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       </div>
       <div class="modal-body">
         <form>
@@ -120,7 +121,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-danger waves-effect waves-light" (click)="saveSeason()">Crear temporada</button>
+        <button type="button" class="btn btn-danger waves-effect waves-light" (click)="saveSeason()" data-dismiss="modal">Crear temporada</button>
       </div>
     </div>
   </div>

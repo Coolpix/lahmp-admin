@@ -17,8 +17,8 @@ const appRoutes: Routes = [
     loadChildren: './pages/players/players.module#PlayersModule',
     canActivate: [AuthGuard]
   }, {
-    path: 'players/:id',
-    loadChildren: './pages/player-detail/player-detail.module#PlayerDetailModule',
+    path: 'seasons/:id/players/:idplayer',
+    loadChildren: './pages/players/player-detail/player-detail.module#PlayerDetailModule',
     canActivate: [AuthGuard]
   }, {
     path: 'seasons/:id/teams',
@@ -30,10 +30,10 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   }, {
     path: 'seasons/:id',
-    loadChildren: './pages/seasons-detail/seasons-detail.module#SeasonsDetailModule',
+    loadChildren: './pages/seasons/seasons-detail/seasons-detail.module#SeasonsDetailModule',
     canActivate: [AuthGuard]
   }, {
-    path: 'round/:id',
+    path: 'seasons/:id/round/:idround',
     loadChildren: './pages/round-detail/round-detail.module#RoundDetailModule',
     canActivate: [AuthGuard]
   }, {
@@ -45,6 +45,7 @@ const appRoutes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   }
+  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

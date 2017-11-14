@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SeasonService} from '../../services/season.service';
-import {ScriptService} from '../../services/script.service';
+import {SeasonService} from '../../../services/season.service';
+import {ScriptService} from '../../../services/script.service';
 import {isNull} from 'util';
-import {Season} from "../../models/season";
+import {Season} from "../../../models/season";
 
 @Component({
   selector: 'app-seasons-detail',

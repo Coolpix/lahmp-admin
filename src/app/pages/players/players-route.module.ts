@@ -1,12 +1,12 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {PlayersComponent} from "./players.component";
+import {PlayersComponent} from './players.component';
 
 const playerRoutes: Routes = [{
   path: '',
   data: {
     title: 'Jugadores',
-    urls: [{title: 'LAHMP',url: '/'},{title: 'Jugadores'}]
+    urls: [{title: 'LAHMP', url: '/'}, {title: 'Jugadores'}]
   },
   component: PlayersComponent
 }];
