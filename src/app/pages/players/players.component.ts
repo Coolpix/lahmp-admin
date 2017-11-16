@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PlayerService} from "../../services/player.service";
-import {Player} from "../../models/player";
-import {isNull} from "util";
-import {SeasonService} from "../../services/season.service";
-import {Season} from "../../models/season";
+import {PlayerService} from '../../services/player.service';
+import {Player} from '../../models/player';
+import {isNull} from 'util';
+import {SeasonService} from '../../services/season.service';
+import {Season} from '../../models/season';
 
 @Component({
   selector: 'app-players',
@@ -34,7 +34,6 @@ export class PlayersComponent implements OnInit {
     } else {
       this.seasonService.getInitSeasonActive().subscribe(
         result => {
-          debugger;
           this.seasonActive = result.data[0];
         },
         error => {

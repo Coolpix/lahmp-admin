@@ -16,15 +16,15 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
   model: any = {};
   seasonActive: Season;
 
-  get seasons(): Seasons {
+  get seasons(): Season[] {
     return this._seasons;
   }
 
-  set seasons(value: Seasons) {
+  set seasons(value: Season[]) {
     this._seasons = value;
   }
 
-  private _seasons: Seasons;
+  private _seasons: Season[];
   objLoaderStatus: boolean;
 
   constructor(
@@ -38,7 +38,6 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
     this.objLoaderStatus = true;
     this.seasonService.getSeasons().subscribe(
       data => {
-        debugger;
         this.seasons = data.data;
         this.objLoaderStatus = false;
       },
@@ -73,6 +72,10 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
   saveSeason() {
     console.log(this.model.name);
     console.log(+this.model.year);
+  }
+
+  deleteSeason(seasonId: Number) {
+    console.log(seasonId);
   }
 
 }
