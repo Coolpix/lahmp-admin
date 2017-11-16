@@ -34,7 +34,8 @@ export class PlayersComponent implements OnInit {
     } else {
       this.seasonService.getInitSeasonActive().subscribe(
         result => {
-          this.seasonActive = result;
+          debugger;
+          this.seasonActive = result.data[0];
         },
         error => {
           console.log(error);

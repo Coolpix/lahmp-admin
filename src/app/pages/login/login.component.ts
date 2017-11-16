@@ -40,14 +40,14 @@ export class LoginComponent implements OnInit {
         result => {
           if (result === true) {
             this.userService.getUser().subscribe(
-              result => {
+              data => {
                 this.seasonActive = this.seasonService.getSeasonActive();
                 if (!isNull(this.seasonActive)) {
                   this.router.navigate(['/seasons/' + this.seasonActive.id]);
                 }else {
                   this.seasonService.getInitSeasonActive().subscribe(
                     result => {
-                      this.router.navigate(['/seasons/' + result.id]);
+                      this.router.navigate(['/seasons/' + result.data[0].id]);
                     },
                     err => {
                       console.log(err);

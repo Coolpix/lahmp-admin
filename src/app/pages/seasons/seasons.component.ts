@@ -4,6 +4,7 @@ import {SeasonService} from '../../services/season.service';
 import {Season} from '../../models/season';
 import {ScriptService} from '../../services/script.service';
 import {isNull} from 'util';
+import {Seasons} from '../../models/seasons';
 
 @Component({
   selector: 'app-seasons',
@@ -15,15 +16,15 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
   model: any = {};
   seasonActive: Season;
 
-  get seasons(): Season {
+  get seasons(): Seasons {
     return this._seasons;
   }
 
-  set seasons(value: Season) {
+  set seasons(value: Seasons) {
     this._seasons = value;
   }
 
-  private _seasons: Season;
+  private _seasons: Seasons;
   objLoaderStatus: boolean;
 
   constructor(
@@ -36,8 +37,9 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
     this.objLoaderStatus = true;
     this.seasonService.getSeasons().subscribe(
-      result => {
-        this.seasons = result;
+      data => {
+        debugger;
+        this.seasons = data.data;
         this.objLoaderStatus = false;
       },
       err => {
@@ -50,7 +52,7 @@ export class SeasonsComponent implements OnInit, AfterViewChecked {
     } else {
       this.seasonService.getInitSeasonActive().subscribe(
         result => {
-          this.seasonActive = result;
+          this.seasonActive = result.data[0];
         },
         error => {
           console.log(error);

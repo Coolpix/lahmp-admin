@@ -4,6 +4,7 @@ import {SeasonService} from '../../../services/season.service';
 import {ScriptService} from '../../../services/script.service';
 import {isNull} from 'util';
 import {Season} from "../../../models/season";
+import {Seasons} from "../../../models/seasons";
 
 @Component({
   selector: 'app-seasons-detail',
@@ -22,7 +23,8 @@ export class SeasonsDetailComponent implements OnInit {
       if (params['id'] !== this.seasonService.getSeasonActive().id.toString()) {
         this.seasonService.getSeason(params['id']).subscribe(
           result => {
-            this.seasonActive = result;
+            this.seasonService.setSeasonLocalStorage(result.data);
+            this.seasonActive = result.data;
           },
           error => {
             console.log(error);
