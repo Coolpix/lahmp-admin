@@ -55,7 +55,9 @@ export class SeasonService {
     return true;
   }
 
-  deleteSeason(seasonID: number): any{
-    return true;
+  deleteSeason(seasonId: number): any {
+    return this.http.delete('http://lahmp.app/api/seasons/' + seasonId, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
+    });
   }
 }

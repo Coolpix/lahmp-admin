@@ -63,26 +63,18 @@
         </div>
       </div>
       <div class="row">
-        <!-- .col -->
-<!--        <div class="col-md-4 col-lg-4 col-xlg-4 align-self-center" *ngFor="let season of seasons; let i = index">
-          <div class="card card-body">
-            <div class="row">
-              <div class="col-md-8 col-lg-9" (click)="goToSeason(season.year)">
-                <h1 class="box-title m-b-0">Temporada {{season.year}}</h1>
-              </div>
-            </div>
-          </div>
-        </div>-->
-        <!-- /.col -->
         <div class="card">
           <div class="card-block">
-            <h4 class="card-title">Data Export</h4>
-            <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+            <h4 class="card-title">Temporadas</h4>
+            <h6 class="card-subtitle">Listado de temporadas</h6>
             <div class="table-responsive m-t-40">
-              <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+              <table id="datatable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                 <tr>
                   <th>Nombre</th>
+                  <th>Número de equipos</th>
+                  <th>Número de jugadores</th>
+                  <th>Número de jornadas</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -90,6 +82,9 @@
                 <tfoot>
                 <tr>
                   <th>Nombre</th>
+                  <th>Número de equipos</th>
+                  <th>Número de jugadores</th>
+                  <th>Número de jornadas</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -97,13 +92,16 @@
                 <tbody>
                 <tr *ngFor="let season of seasons; let i = index">
                   <td>Temporada {{season.year}}</td>
+                  <td>{{season.teams.length}} equipos</td>
+                  <td>{{season.players.length}} jugadores</td>
+                  <td>{{season.rounds.length}} jornadas</td>
                   <td>
-                    <button class="btn pull-right hidden-sm-down btn-success" alt="default" data-toggle="modal" data-target="#responsive-modal" (click)="goToSeason(season.id)">
+                    <button class="btn pull-right hidden-sm-down btn-success" alt="Ir a temporada" (click)="goToSeason(season.id)">
                       <i class="mdi mdi-plus-circle"></i> Entrar
                     </button>
                   </td>
                   <td>
-                    <button class="btn pull-right hidden-sm-down btn-danger" alt="default" data-toggle="modal" data-target="#responsive-modal" (click)="deleteSeason(season.id)">
+                    <button class="btn pull-right hidden-sm-down btn-danger" alt="Borrar temporada" (click)="deleteSeason(season.id, season.year)">
                       <i class="mdi mdi-minus-circle"></i> Borrar
                     </button>
                   </td>

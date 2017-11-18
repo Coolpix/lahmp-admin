@@ -27,20 +27,31 @@
     <div class="container-fluid">
       <breadcrumb></breadcrumb>
       <div class="row">
-        <!-- .col -->
-        <div class="col-md-4 col-lg-4 col-xlg-4" *ngFor="let player of players; let i = index">
-          <div routerLink="/players/{{player.id}}" class="card card-body">
-            <div class="row">
-              <div class="col-md-4 col-lg-3 text-center">
-                <a><img src="../../../assets/images/users/1.jpg" alt="user" class="img-circle img-responsive"></a>
-              </div>
-              <div class="col-md-8 col-lg-9">
-                <h3 class="box-title m-b-0">{{player.name}}</h3> <small>Web Designer</small>
-              </div>
+        <div class="card">
+          <div class="card-block">
+            <h4 class="card-title">Jugadores</h4>
+            <h6 class="card-subtitle">Listado de jugadores</h6>
+            <div class="table-responsive m-t-40">
+              <table id="datatable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                  <th>Nombre</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr *ngFor="let player of players; let i = index">
+                  <td>{{ player.name }}</td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <!-- /.col -->
       </div>
     </div>
     <!-- ============================================================== -->
