@@ -12,7 +12,10 @@ import {ScriptService} from './services/script.service';
 import {PlayerService} from './services/player.service';
 import * as $ from 'jquery';
 import {HttpClientModule} from '@angular/common/http';
-import {HttpModule} from "@angular/http";
+import {HttpModule} from '@angular/http';
+import {TeamService} from './services/team.service';
+import {RoundService} from "./services/round.service";
+import {MatchService} from "./services/match.service";
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import {HttpModule} from "@angular/http";
     UserService,
     SeasonService,
     PlayerService,
+    TeamService,
+    MatchService,
+    RoundService,
     ScriptService
   ],
   bootstrap: [AppComponent]

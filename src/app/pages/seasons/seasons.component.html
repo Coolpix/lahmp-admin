@@ -54,7 +54,6 @@
       <breadcrumb></breadcrumb>
       <div class="row page-titles">
         <div class="col-md-6 col-4 align-self-center">
-
         </div>
         <div class="col-md-6 col-4 align-self-center">
           <button class="btn pull-right hidden-sm-down btn-success" alt="default" data-toggle="modal" data-target="#responsive-modal">
@@ -63,56 +62,57 @@
         </div>
       </div>
       <div class="row">
-        <div class="card">
-          <div class="card-block">
-            <h4 class="card-title">Temporadas</h4>
-            <h6 class="card-subtitle">Listado de temporadas</h6>
-            <div class="table-responsive m-t-40">
-              <table id="datatable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Número de equipos</th>
-                  <th>Número de jugadores</th>
-                  <th>Número de jornadas</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Número de equipos</th>
-                  <th>Número de jugadores</th>
-                  <th>Número de jornadas</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-                </tfoot>
-                <tbody>
-                <tr *ngFor="let season of seasons; let i = index">
-                  <td>Temporada {{season.year}}</td>
-                  <td>{{season.teams.length}} equipos</td>
-                  <td>{{season.players.length}} jugadores</td>
-                  <td>{{season.rounds.length}} jornadas</td>
-                  <td>
-                    <button class="btn pull-right hidden-sm-down btn-success" alt="Ir a temporada" (click)="goToSeason(season.id)">
-                      <i class="mdi mdi-plus-circle"></i> Entrar
-                    </button>
-                  </td>
-                  <td>
-                    <button class="btn pull-right hidden-sm-down btn-danger" alt="Borrar temporada" (click)="deleteSeason(season.id, season.year)">
-                      <i class="mdi mdi-minus-circle"></i> Borrar
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-title">Temporadas</h4>
+              <h6 class="card-subtitle">Listado de temporadas</h6>
+              <div class="table-responsive m-t-40">
+                <table id="datatable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Número de equipos</th>
+                    <th>Número de jugadores</th>
+                    <th>Número de jornadas</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tfoot>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Número de equipos</th>
+                    <th>Número de jugadores</th>
+                    <th>Número de jornadas</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  </tfoot>
+                  <tbody>
+                  <tr *ngFor="let season of seasons; let i = index">
+                    <td>Temporada {{season.year}}</td>
+                    <td>{{season.teams.length}} equipos</td>
+                    <td>{{season.players.length}} jugadores</td>
+                    <td>{{season.rounds.length}} jornadas</td>
+                    <td>
+                      <button class="btn pull-right hidden-sm-down btn-success" alt="Ir a temporada" (click)="goToSeason(season.id)">
+                        <i class="mdi mdi-plus-circle"></i> Entrar
+                      </button>
+                    </td>
+                    <td>
+                      <button class="btn pull-right hidden-sm-down btn-danger" alt="Borrar temporada" (click)="deleteSeason(season.id, season.year)">
+                        <i class="mdi mdi-minus-circle"></i> Borrar
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->

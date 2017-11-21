@@ -78,8 +78,26 @@ export class SeasonsComponent implements OnInit {
   }
 
   saveSeason() {
-    console.log(this.model.name);
-    console.log(+this.model.year);
+    this.seasonService.saveSeason(this.model.name, this.model.year).subscribe(
+      data => {
+        swal({
+          position: 'top-right',
+          type: 'success',
+          title: 'Temporada ' + this.model.year + ' creada.',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.model.name = '';
+        this.model.year = '';
+        this.router.navigate([data.data.id], {relativeTo: this.route });
+      },
+      err => {
+        swal(
+          'Error creando la temporada. Error: ' + err.status,
+          'error'
+        );
+      }
+    );
   }
 
   deleteSeason(seasonId: number, seasonYear: number) {
@@ -115,10 +133,10 @@ export class SeasonsComponent implements OnInit {
           }
         );
       } else if (result.dismiss === 'cancel') {
-        swal(
-          'Borrado cancelado',
-          'error'
-        );
+        swal({
+          title: 'Borrado cancelado',
+          type: 'info'
+        });
       }
     });
   }

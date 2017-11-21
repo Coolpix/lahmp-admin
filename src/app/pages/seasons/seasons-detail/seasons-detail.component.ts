@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {SeasonService} from '../../../services/season.service';
-import {ScriptService} from '../../../services/script.service';
+import {Season} from '../../../models/season';
+import swal from 'sweetalert2';
+import {RoundService} from '../../../services/round.service';
 import {isNull} from 'util';
-import {Season} from "../../../models/season";
-import {Seasons} from "../../../models/seasons";
 
 @Component({
   selector: 'app-seasons-detail',
@@ -12,11 +12,12 @@ import {Seasons} from "../../../models/seasons";
   styleUrls: ['./seasons-detail.component.css']
 })
 export class SeasonsDetailComponent implements OnInit {
-
+  model: any = {};
   seasonActive: Season;
 
   constructor(private route: ActivatedRoute,
-              private seasonService: SeasonService) { }
+              private seasonService: SeasonService,
+              private roundService: RoundService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -34,5 +35,27 @@ export class SeasonsDetailComponent implements OnInit {
         this.seasonActive = this.seasonService.getSeasonActive();
       }
     });
+  }
+
+  saveRound() {
+    this.roundService.saveRound(this.model.name, this.seasonActive.id).subscribe(
+      data => {
+        swal({
+          position: 'top-right',
+          type: 'success',
+          title: 'Jornada ' + this.model.name + ' creada.',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.model.name = '';
+        //this.players.push(result.data);
+      },
+      err => {
+        swal(
+          'Error creando la temporada. Error: ' + err.status,
+          'error'
+        );
+      }
+    );
   }
 }

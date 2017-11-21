@@ -37,9 +37,8 @@ export class SeasonService {
     return this.http.get<Seasons>('http://lahmp.app/api/seasons?page[size]=1', {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     }).map((seasons: Seasons) => {
-      const season = seasons;
-      this.setSeasonLocalStorage(season.data[0]);
-      return season;
+      this.setSeasonLocalStorage(seasons.data[0]);
+      return seasons;
     });
   }
 
@@ -51,11 +50,25 @@ export class SeasonService {
     return JSON.parse(localStorage.getItem('seasonActive'));
   }
 
-  saveSeason(): any {
-    return true;
+  saveSeason(name: string, year: number): any {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._access_token = currentUser && currentUser.access_token;
+    const body = {
+      'name': name,
+      'year': year,
+      'players': [],
+      'matches': [],
+      'rounds': [],
+      'teams': []
+    };
+    return this.http.post('http://lahmp.app/api/seasons', body, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
+    });
   }
 
   deleteSeason(seasonId: number): any {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._access_token = currentUser && currentUser.access_token;
     return this.http.delete('http://lahmp.app/api/seasons/' + seasonId, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });

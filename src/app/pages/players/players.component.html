@@ -1,3 +1,28 @@
+<!-- Modal creacion jugador -->
+<div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Creación de nuevo jugador</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="season-name" class="control-label">Nombre:</label>
+            <input type="text" class="form-control" id="season-name" name="name" [(ngModel)]="model.name" #name="ngModel">
+            <label for="season-photo" class="control-label">Foto:</label>
+            <input type="text" class="form-control" id="season-photo" name="photo" [(ngModel)]="model.photo" #name="ngModel">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger waves-effect waves-light" (click)="savePlayer()" data-dismiss="modal">Crear jugador</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="preloader">
   <svg class="circular" viewBox="25 25 50 50">
     <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
@@ -26,6 +51,16 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
       <breadcrumb></breadcrumb>
+      <div class="row page-titles">
+        <div class="col-md-6 col-4 align-self-center">
+
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+          <button class="btn pull-right hidden-sm-down btn-success" alt="default" data-toggle="modal" data-target="#responsive-modal">
+            <i class="mdi mdi-plus-circle"></i> Nuevo jugador
+          </button>
+        </div>
+      </div>
       <div class="row">
         <div class="card">
           <div class="card-block">
@@ -36,16 +71,39 @@
                 <thead>
                 <tr>
                   <th>Nombre</th>
+                  <th>Equipo</th>
+                  <th>Goles</th>
+                  <th>Asistencias</th>
+                  <th></th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                   <th>Nombre</th>
+                  <th>Equipo</th>
+                  <th>Goles</th>
+                  <th>Asistencias</th>
+                  <th></th>
+                  <th></th>
                 </tr>
                 </tfoot>
                 <tbody>
                 <tr *ngFor="let player of players; let i = index">
                   <td>{{ player.name }}</td>
+                  <td>{{ player.teams[0]?.name }}</td>
+                  <td>{{ player.goals?.length }} goles</td>
+                  <td>{{ player.assists?.length }} asistencias</td>
+                  <td>
+                    <button class="btn pull-right hidden-sm-down btn-success" alt="Ir a jugador" (click)="deletePlayer(player.id, player.name)">
+                      <i class="mdi mdi-plus-circle"></i> Entrar
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn pull-right hidden-sm-down btn-danger" alt="Borrar jugador" (click)="deletePlayer(player.id, player.name)">
+                      <i class="mdi mdi-minus-circle"></i> Borrar
+                    </button>
+                  </td>
                 </tr>
                 </tbody>
               </table>

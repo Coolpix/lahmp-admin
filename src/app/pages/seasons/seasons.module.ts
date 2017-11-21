@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SeasonsComponent } from './seasons.component';
 import { SeasonsRoutingModule } from './seasons-route.module';
 import { SharedModule } from '../../shared/shared.module';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -12,9 +12,7 @@ import {FormsModule} from '@angular/forms';
     SeasonsRoutingModule,
     FormsModule
   ],
-  declarations: [
-    SeasonsComponent
-  ]
+  declarations: [SeasonsComponent]
 })
 
 export class SeasonsModule { }

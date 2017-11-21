@@ -25,8 +25,8 @@
         "../src/assets/css/fullcalendar.min.css",
         "../src/assets/css/jquery.dataTables.min.css",
         "../src/assets/css/sweetalert.css",
-        "../src/assets/css/red.css",
         "../src/assets/css/style.css",
+        "../src/assets/css/red.css",
         "styles.css"
       ],
       "scripts": [
