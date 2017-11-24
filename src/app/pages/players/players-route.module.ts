@@ -6,7 +6,7 @@ const playerRoutes: Routes = [{
   path: '',
   data: {
     title: 'Jugadores',
-    urls: [{title: 'LAHMP', url: '/'}, {title: 'Jugadores'}]
+    urls: [{title: 'LAHMP', url: '/seasons'}, {title: 'Jugadores'}]
   },
   component: PlayersComponent
 }];

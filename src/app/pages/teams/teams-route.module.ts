@@ -7,7 +7,7 @@ const teamsRoutes: Routes = [{
   component: TeamsComponent,
   data: {
     title: 'Equipos',
-    urls: [{title: 'LAHMP', url: '/'}, {title: 'Equipos'}, {title: 'Equipo Verde'}]
+    urls: [{title: 'LAHMP', url: '/seasons'}, {title: 'Equipos'}]
   }
 }];
 

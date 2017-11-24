@@ -9,7 +9,7 @@ const seasonsRoutes: Routes = [
     component: SeasonsComponent,
     data: {
       title: 'Temporadas',
-      urls: [{title: 'LAHMP', url: '/'}, {title: 'Temporadas'}]
+      urls: [{title: 'LAHMP', url: '/seasons'}, {title: 'Temporadas'}]
     }
   }
 ];

@@ -6,7 +6,7 @@ const seasonsDetailRoutes: Routes = [{
   path: '',
   data: {
     title: 'Temporadas',
-    urls: [{title: 'LAHMP', url: '/'}, {title: 'Temporadas'}, {title: '2017'}]
+    urls: [{title: 'LAHMP', url: '/seasons'}, {title: 'Temporadas', url: '/seasons'}, {title: '2017'}]
   },
   component: SeasonsDetailComponent
 }];
