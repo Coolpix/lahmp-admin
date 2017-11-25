@@ -1,12 +1,12 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {RoundDetailComponent} from "./round-detail.component";
+import {RoundDetailComponent} from './round-detail.component';
 
 const roundDetailRoutes: Routes = [{
   path: '',
   data: {
     title: 'Jornadas',
-    urls: [{title: 'LAHMP',url: '/'},{title: 'Jornada'},{title: 'Jornada 1'}]
+    urls: [{title: 'LAHMP', url: '/seasons'}, {title: 'Jornada'}, {title: 'Jornada 1'}]
   },
   component: RoundDetailComponent
 }];

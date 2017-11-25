@@ -13,6 +13,11 @@
       </ng-template>
     </ol>
   </div>
+  <div class="col-md-6 col-4 align-self-center" *ngIf="layout">
+    <button class="btn pull-right hidden-sm-down btn-success" alt="default" data-toggle="modal" data-target="#responsive-modal">
+      <i class="mdi mdi-plus-circle"></i> {{ layout }}
+    </button>
+  </div>
 </div>
 <!-- ============================================================== -->
 <!-- End Bread crumb and right sidebar toggle -->

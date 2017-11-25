@@ -14,6 +14,7 @@ import swal from 'sweetalert2';
 export class PlayersComponent implements OnInit {
   model: any = {};
   seasonActive: Season;
+  layout = 'Nuevo jugador';
 
   get players(): Player[] {
     return this._players;
@@ -35,7 +36,6 @@ export class PlayersComponent implements OnInit {
     const scriptService = this.scriptService;
     this.playerService.getPlayers().subscribe(
       result => {
-        debugger;
         this._players = result.data;
         this.scriptService.loadScripts('../../assets/js/jquery.dataTables.min.js');
         setTimeout(function(){
@@ -81,6 +81,8 @@ export class PlayersComponent implements OnInit {
         this.model.name = '';
         this.model.photo = '';
         this.players.push(result.data);
+        this.seasonActive.players.push(result.data);
+        this.seasonService.setSeasonLocalStorage(this.seasonActive);
       },
       err => {
         swal(

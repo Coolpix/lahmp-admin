@@ -21,7 +21,7 @@ export class SeasonService {
     });
   }
 
-  getSeason(seasonId: Number): Observable<any> {
+  getSeason(seasonId: Number): Observable<Season> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
     if (!isUndefined(seasonId)) {

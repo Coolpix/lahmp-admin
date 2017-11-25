@@ -1,8 +1,8 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Teams} from '../models/teams';
 import {SeasonService} from './season.service';
 import {Injectable} from '@angular/core';
+import {Rounds} from '../models/rounds';
 
 @Injectable()
 export class RoundService {
@@ -13,10 +13,10 @@ export class RoundService {
     private seasonService: SeasonService
   ) {}
 
-  getRounds(): Observable<Teams> {
+  getRounds(): Observable<Rounds> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.get<Teams>('http://lahmp.app/api/rounds/' + this.seasonService.getSeasonActive().year, {
+    return this.http.get<Rounds>('http://lahmp.app/api/rounds/season/' + this.seasonService.getSeasonActive().year, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }

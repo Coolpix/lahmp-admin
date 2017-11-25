@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
 import {ScriptService} from '../../services/script.service';
-import {Season} from "../../models/season";
+import {Season} from '../../models/season';
+import {Round} from '../../models/round';
 
 @Component({
   selector: 'ma-sidebar',
@@ -9,8 +10,8 @@ import {Season} from "../../models/season";
 })
 
 export class SidebarComponent implements OnInit {
-
   name: any;
+
   @Input() season: Season;
   @Output() seasonChange: EventEmitter<Season>;
 

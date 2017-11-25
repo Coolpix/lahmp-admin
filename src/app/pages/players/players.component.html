@@ -50,17 +50,7 @@
     <!-- Container fluid  -->
     <!-- ============================================================== -->
     <div class="container-fluid">
-      <breadcrumb></breadcrumb>
-      <div class="row page-titles">
-        <div class="col-md-6 col-4 align-self-center">
-
-        </div>
-        <div class="col-md-6 col-4 align-self-center">
-          <button class="btn pull-right hidden-sm-down btn-success" alt="default" data-toggle="modal" data-target="#responsive-modal">
-            <i class="mdi mdi-plus-circle"></i> Nuevo jugador
-          </button>
-        </div>
-      </div>
+      <breadcrumb [layout]="layout"></breadcrumb>
       <div class="row">
         <div class="card">
           <div class="card-block">

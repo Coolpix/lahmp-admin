@@ -14,6 +14,7 @@ import swal from 'sweetalert2';
 export class TeamsComponent implements OnInit {
   model: any = {};
   seasonActive: Season;
+  layout = 'Nuevo equipo';
 
   get teams(): Team[] {
     return this._teams;

@@ -10,7 +10,7 @@ export class ScriptService {
       const scriptNotExists = 0 === $('script[src*="' + urlScript + '"]').length;
       if (scriptNotExists) {
         this.loadScript(urlScript);
-      }else{
+      }else {
         console.log('Script already exists.');
         this.removeScript(urlScript);
         this.loadScript(urlScript);
@@ -19,7 +19,7 @@ export class ScriptService {
   }
 
   public loadScript(urlScript) {
-    console.log('preparing to load...');
+    console.log('preparing to load: ' + urlScript);
     const node = document.createElement('script');
     node.src = urlScript;
     node.type = 'text/javascript';

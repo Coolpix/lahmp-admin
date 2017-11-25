@@ -22,6 +22,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css",
+        "../src/assets/css/bootstrap-select.min.css",
         "../src/assets/css/fullcalendar.min.css",
         "../src/assets/css/jquery.dataTables.min.css",
         "../src/assets/css/sweetalert.css",

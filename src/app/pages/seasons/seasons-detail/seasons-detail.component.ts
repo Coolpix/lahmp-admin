@@ -4,7 +4,6 @@ import {SeasonService} from '../../../services/season.service';
 import {Season} from '../../../models/season';
 import swal from 'sweetalert2';
 import {RoundService} from '../../../services/round.service';
-import {isNull} from 'util';
 
 @Component({
   selector: 'app-seasons-detail',
@@ -14,6 +13,7 @@ import {isNull} from 'util';
 export class SeasonsDetailComponent implements OnInit {
   model: any = {};
   seasonActive: Season;
+  layout = 'Nueva jornada';
 
   constructor(private route: ActivatedRoute,
               private seasonService: SeasonService,
@@ -32,6 +32,7 @@ export class SeasonsDetailComponent implements OnInit {
           }
         );
       } else {
+        debugger;
         this.seasonActive = this.seasonService.getSeasonActive();
       }
     });
