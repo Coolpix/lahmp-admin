@@ -56,7 +56,7 @@ export class TeamsComponent implements OnInit {
   }
 
   saveTeam() {
-    this.teamService.saveTeam(this.model.name, this.model.photo, this.seasonActive.id).subscribe(
+    this.teamService.saveTeam(this.model.name, this.model.photo, this.model.logo, this.seasonActive.id).subscribe(
       result => {
         swal({
           position: 'top-right',
@@ -67,6 +67,7 @@ export class TeamsComponent implements OnInit {
         });
         this.model.name = '';
         this.model.photo = '';
+        this.model.logo = '';
         this.teams.push(result.data);
       },
       err => {

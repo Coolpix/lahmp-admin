@@ -21,12 +21,13 @@ export class TeamService {
     });
   }
 
-  saveTeam(name: string, photo: string, seasonId: number): any {
+  saveTeam(name: string, photo: string, logo: string, seasonId: number): any {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
     const body = {
       'name': name,
       'logo': photo,
+      'mini_logo': logo,
       'season': seasonId,
       'matches': [],
       'players': [],
