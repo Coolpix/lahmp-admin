@@ -40,9 +40,21 @@ export class RoundDetailComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         if (params['idround']) {
+          const scriptService = this.scriptService;
           this.matchService.getMatchesByRound(params['idround']).subscribe(
             result => {
               this.matches = result.data;
+              this.scriptService.loadScripts('../../assets/js/jquery.dataTables.min.js');
+              setTimeout(function(){
+                scriptService.loadScripts('../../assets/js/dataTables.buttons.min.js');
+                scriptService.loadScripts('../../assets/js/buttons.flash.min.js');
+                scriptService.loadScripts('../../assets/js/jszip.min.js');
+                scriptService.loadScripts('../../assets/js/pdfmake.min.js');
+                scriptService.loadScripts('../../assets/js/vfs_fonts.js');
+                scriptService.loadScripts('../../assets/js/buttons.html5.min.js');
+                scriptService.loadScripts('../../assets/js/buttons.print.min.js');
+                scriptService.loadScripts('../../assets/js/dataTableInit.js');
+              }, 500, scriptService);
             },
             err => {
               console.log(err);
