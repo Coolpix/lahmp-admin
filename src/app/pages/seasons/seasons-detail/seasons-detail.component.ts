@@ -32,7 +32,6 @@ export class SeasonsDetailComponent implements OnInit {
           }
         );
       } else {
-        debugger;
         this.seasonActive = this.seasonService.getSeasonActive();
       }
     });

@@ -25,6 +25,10 @@ const appRoutes: Routes = [
     loadChildren: './pages/teams/teams.module#TeamsModule',
     canActivate: [AuthGuard]
   }, {
+    path: 'seasons/:id/teams/:idteam',
+    loadChildren: './pages/teams/team-detail/team-detail.module#TeamDetailModule',
+    canActivate: [AuthGuard]
+  }, {
     path: 'seasons',
     loadChildren: './pages/seasons/seasons.module#SeasonsModule',
     canActivate: [AuthGuard]

@@ -19,4 +19,5 @@ const seasonsDetailRoutes: Routes = [{
     RouterModule
   ]
 })
+
 export class SeasonsDetailRoutingModule { }

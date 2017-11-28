@@ -44,4 +44,20 @@ export class PlayerService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }
+
+  addTeamToPlayer(playerId: number, name: string, photo: string, seasonId: number, goals: Array<any>, assists: Array<any>, teamId: number): any {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._access_token = currentUser && currentUser.access_token;
+    const body = {
+      'name': name,
+      'photo': photo,
+      'season': seasonId,
+      'goals': goals,
+      'assists': assists,
+      'team': teamId
+    };
+    return this.http.put('http://lahmp.app/api/players/' + playerId, body, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
+    });
+  }
 }

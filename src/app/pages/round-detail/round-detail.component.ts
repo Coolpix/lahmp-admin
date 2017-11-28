@@ -34,7 +34,7 @@ export class RoundDetailComponent implements OnInit {
     private seasonService: SeasonService,
     private matchService: MatchService,
     private scriptService: ScriptService
-  ) {this.scriptService.loadScripts('../../assets/js/bootstrap-select.min.js'); }
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -54,6 +54,7 @@ export class RoundDetailComponent implements OnInit {
                 scriptService.loadScripts('../../assets/js/buttons.html5.min.js');
                 scriptService.loadScripts('../../assets/js/buttons.print.min.js');
                 scriptService.loadScripts('../../assets/js/dataTableInit.js');
+                scriptService.loadScripts('../../assets/js/bootstrap-select.min.js');
               }, 500, scriptService);
             },
             err => {
@@ -80,7 +81,6 @@ export class RoundDetailComponent implements OnInit {
   }
 
   saveMatch() {
-    const modal = this.model;
     this.route.params.subscribe(
       params => {
         if (params['idround']) {
@@ -107,6 +107,5 @@ export class RoundDetailComponent implements OnInit {
         }
       }
     );
-
   }
 }

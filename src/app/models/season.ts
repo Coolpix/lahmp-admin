@@ -10,4 +10,5 @@ export class Season {
   rounds: Array<Round>;
   players: Array<Player>;
   matches: Array<Match>;
+  data: any;
 }

@@ -14,8 +14,8 @@ import * as $ from 'jquery';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import {TeamService} from './services/team.service';
-import {RoundService} from "./services/round.service";
-import {MatchService} from "./services/match.service";
+import {RoundService} from './services/round.service';
+import {MatchService} from './services/match.service';
 
 @NgModule({
   declarations: [

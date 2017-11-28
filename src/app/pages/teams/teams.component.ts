@@ -5,6 +5,7 @@ import {SeasonService} from '../../services/season.service';
 import {Team} from '../../models/team';
 import {TeamService} from '../../services/team.service';
 import swal from 'sweetalert2';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-teams',
@@ -27,8 +28,10 @@ export class TeamsComponent implements OnInit {
   private _teams: Team[];
 
   constructor(
+    private router: Router,
     private seasonService: SeasonService,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -55,6 +58,10 @@ export class TeamsComponent implements OnInit {
     }
   }
 
+  goToTeam(teamId: number) {
+    this.router.navigate([teamId], { relativeTo: this.route });
+  }
+
   saveTeam() {
     this.teamService.saveTeam(this.model.name, this.model.photo, this.model.logo, this.seasonActive.id).subscribe(
       result => {
@@ -79,6 +86,7 @@ export class TeamsComponent implements OnInit {
     );
   }
 
+  //TODO: Borrar partidos asociados
   deleteTeam(teamId: number, teamName: string) {
     const teamService = this.teamService;
     const self = this;

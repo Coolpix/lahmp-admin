@@ -79,9 +79,9 @@
                 </tr>
                 </tfoot>
                 <tbody>
-                <tr *ngFor="let player of players; let i = index">
+                <tr *ngFor="let player of players">
                   <td>{{ player.name }}</td>
-                  <td>{{ player.teams[0]?.name }}</td>
+                  <td>{{ player.team?.name }}</td>
                   <td>{{ player.goals?.length }} goles</td>
                   <td>{{ player.assists?.length }} asistencias</td>
                   <td>

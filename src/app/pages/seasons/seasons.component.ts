@@ -61,7 +61,6 @@ export class SeasonsComponent implements OnInit {
     );
 
     if (!isNull(this.seasonService.getSeasonActive())) {
-      debugger;
       this.seasonActive = this.seasonService.getSeasonActive();
     } else {
       this.seasonService.getInitSeasonActive().subscribe(
@@ -76,7 +75,6 @@ export class SeasonsComponent implements OnInit {
   }
 
   goToSeason(seasonId: Number) {
-    debugger;
     this.router.navigate([seasonId], { relativeTo: this.route });
   }
 
