@@ -16,6 +16,8 @@ import {HttpModule} from '@angular/http';
 import {TeamService} from './services/team.service';
 import {RoundService} from './services/round.service';
 import {MatchService} from './services/match.service';
+import {GoalService} from './services/goal.service';
+import {AssistService} from './services/assist.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import {MatchService} from './services/match.service';
     TeamService,
     MatchService,
     RoundService,
+    GoalService,
+    AssistService,
     ScriptService
   ],
   bootstrap: [AppComponent]

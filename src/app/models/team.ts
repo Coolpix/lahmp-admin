@@ -6,11 +6,12 @@ import {Goal} from './goal';
 export class Team {
   id: number;
   name: string;
-  photo: string;
   logo: string;
+  mini_logo: string;
   points: number;
   players: Array<Player>;
   matches: Array<Match>;
   goals: Array<Goal>;
   assits: Array<Assist>;
+  data: any;
 }

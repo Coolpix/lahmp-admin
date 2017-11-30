@@ -82,9 +82,8 @@
                   <th>Hora Comienzo</th>
                   <th>Equipo Local</th>
                   <th>Equipo Visitante</th>
-                  <th>Gol Local</th>
-                  <th>Gol Visitante</th>
                   <th>Resultado</th>
+                  <th>Acción</th>
                 </tr>
                 </thead>
                 <tfoot>
@@ -92,9 +91,8 @@
                   <th>Hora Comienzo</th>
                   <th>Equipo Local</th>
                   <th>Equipo Visitante</th>
-                  <th>Gol Local</th>
-                  <th>Gol Visitante</th>
                   <th>Resultado</th>
+                  <th>Acción</th>
                 </tr>
                 </tfoot>
                 <tbody>
@@ -102,17 +100,12 @@
                   <td>18:00</td>
                   <td><img width="60" src="{{ match.teams[0].mini_logo }}" alt="{{ match.teams[0].name }}"> {{ match.teams[0].name }}</td>
                   <td><img width="60" src="{{ match.teams[1].mini_logo }}" alt="{{ match.teams[1].name }}"> {{ match.teams[1].name }}</td>
-                  <td>
-                    <button class="btn pull-right hidden-sm-down btn-success" alt="Gol Local">
-                      <i class="mdi mdi-plus-circle"></i> Gol Local
-                    </button>
-                  </td>
-                  <td>
-                    <button class="btn pull-right hidden-sm-down btn-success" alt="Gol Visitante">
-                      <i class="mdi mdi-plus-circle"></i> Gol Visitante
-                    </button>
-                  </td>
                   <td>0 - 0</td>
+                  <td>
+                    <button class="btn pull-right hidden-sm-down btn-success" alt="Ir a partido" (click)="goToMatch(match.id)">
+                      <i class="mdi mdi-plus-circle"></i> Entrar
+                    </button>
+                  </td>
                 </tr>
                 </tbody>
               </table>

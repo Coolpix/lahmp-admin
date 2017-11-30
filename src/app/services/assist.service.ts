@@ -1,57 +1,53 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {Teams} from '../models/teams';
-import {SeasonService} from './season.service';
 import {Injectable} from '@angular/core';
-import {Team} from '../models/team';
+import {Observable} from 'rxjs/Observable';
+import {SeasonService} from './season.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Players} from '../models/players';
 
 @Injectable()
-export class TeamService {
+export class AssistService {
   private _access_token: string;
 
   constructor(
     private http: HttpClient,
-    private seasonService: SeasonService
-  ) {}
+    private seasonService: SeasonService) {
+  }
 
-  getTeams(): Observable<Teams> {
+  getAssists(): Observable<Players> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.get<Teams>('http://lahmp.app/api/teams/season/' + this.seasonService.getSeasonActive().year, {
+    return this.http.get<Players>('http://lahmp.app/api/assists/season/' + this.seasonService.getSeasonActive().year, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }
 
-  getTeamById(teamId: number): Observable<Team> {
+  getAssistsByTeam(teamId: number): Observable<Players> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.get<Team>('http://lahmp.app/api/teams/' + teamId, {
+    return this.http.get<Players>('http://lahmp.app/api/assists/team/' + teamId, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }
 
-  saveTeam(name: string, photo: string, logo: string, seasonId: number): any {
+  saveAssist(goalId: number, teamId: number, playerId: number, matchId: number, seasonId: number): any {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
     const body = {
-      'name': name,
-      'logo': photo,
-      'mini_logo': logo,
-      'season': seasonId,
-      'matches': [],
-      'players': [],
-      'goals': [],
-      'assists': []
+      'goal': goalId,
+      'team': teamId,
+      'player': playerId,
+      'match': matchId,
+      'season': seasonId
     };
-    return this.http.post('http://lahmp.app/api/teams', body, {
+    return this.http.post('http://lahmp.app/api/assists', body, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }
 
-  deleteTeam(teamId: number): any {
+  deleteAssist(goalId: number): any {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.delete('http://lahmp.app/api/teams/' + teamId, {
+    return this.http.delete('http://lahmp.app/api/assists/' + goalId, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }

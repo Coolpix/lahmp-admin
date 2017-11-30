@@ -4,7 +4,7 @@ import {SeasonService} from '../../services/season.service';
 import {Season} from '../../models/season';
 import {MatchService} from '../../services/match.service';
 import {Match} from '../../models/match';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2';
 import {ScriptService} from '../../services/script.service';
 
@@ -31,6 +31,7 @@ export class RoundDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private seasonService: SeasonService,
     private matchService: MatchService,
     private scriptService: ScriptService
@@ -65,7 +66,6 @@ export class RoundDetailComponent implements OnInit {
       }
     );
 
-
     if (!isNull(this.seasonService.getSeasonActive())) {
       this.seasonActive = this.seasonService.getSeasonActive();
     } else {
@@ -86,7 +86,6 @@ export class RoundDetailComponent implements OnInit {
         if (params['idround']) {
           this.matchService.saveMatch(this.seasonActive.id, params['idround'], this.model.local, this.model.visitor).subscribe(
             result => {
-              console.log(result);
               swal({
                 position: 'top-right',
                 type: 'success',
@@ -107,5 +106,9 @@ export class RoundDetailComponent implements OnInit {
         }
       }
     );
+  }
+
+  goToMatch(matchId: number) {
+    this.router.navigate(['match', matchId], { relativeTo: this.route });
   }
 }

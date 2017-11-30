@@ -21,6 +21,14 @@ export class PlayerService {
     });
   }
 
+  getPlayersByTeam(teamId: number): Observable<Players> {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._access_token = currentUser && currentUser.access_token;
+    return this.http.get<Players>('http://lahmp.app/api/players/team/' + teamId, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
+    });
+  }
+
   savePlayer(name: string, photo: string, seasonId: number): any {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
@@ -30,7 +38,7 @@ export class PlayerService {
       'season': seasonId,
       'goals': [],
       'assists': [],
-      'teams': []
+      'team': null
     };
     return this.http.post('http://lahmp.app/api/players', body, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
@@ -45,7 +53,7 @@ export class PlayerService {
     });
   }
 
-  addTeamToPlayer(playerId: number, name: string, photo: string, seasonId: number, goals: Array<any>, assists: Array<any>, teamId: number): any {
+  updatePlayer(playerId: number, name: string, photo: string, seasonId: number, goals: Array<any>, assists: Array<any>, teamId: number): any {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
     const body = {

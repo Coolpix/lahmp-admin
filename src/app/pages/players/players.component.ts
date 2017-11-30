@@ -70,7 +70,7 @@ export class PlayersComponent implements OnInit {
   }
 
   savePlayer() {
-    this.playerService.savePlayer(this.model.name, this.model.photo, this.seasonActive.id).subscribe(
+    this.playerService.savePlayer(this.model.name, this.model.logo, this.seasonActive.id).subscribe(
       result => {
         swal({
           position: 'top-right',
@@ -80,7 +80,7 @@ export class PlayersComponent implements OnInit {
           timer: 1500
         });
         this.model.name = '';
-        this.model.photo = '';
+        this.model.logo = '';
         this.players.push(result.data);
         this.seasonActive.players.push(result.data);
         this.seasonService.setSeasonLocalStorage(this.seasonActive);

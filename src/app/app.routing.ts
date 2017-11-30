@@ -37,6 +37,10 @@ const appRoutes: Routes = [
     loadChildren: './pages/seasons/seasons-detail/seasons-detail.module#SeasonsDetailModule',
     canActivate: [AuthGuard]
   }, {
+    path: 'seasons/:id/round/:idround/match/:idmatch',
+    loadChildren: './pages/match-detail/match-detail.module#MatchDetailModule',
+    canActivate: [AuthGuard]
+  }, {
     path: 'seasons/:id/round/:idround',
     loadChildren: './pages/round-detail/round-detail.module#RoundDetailModule',
     canActivate: [AuthGuard]

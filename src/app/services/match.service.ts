@@ -4,6 +4,7 @@ import {Teams} from '../models/teams';
 import {SeasonService} from './season.service';
 import {Injectable} from '@angular/core';
 import {Matches} from "../models/matches";
+import {Match} from "../models/match";
 
 @Injectable()
 export class MatchService {
@@ -14,10 +15,18 @@ export class MatchService {
     private seasonService: SeasonService
   ) {}
 
-  getMatches(): Observable<Teams> {
+  getMatches(): Observable<Matches> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.get<Teams>('http://lahmp.app/api/matches/season/' + this.seasonService.getSeasonActive().year, {
+    return this.http.get<Matches>('http://lahmp.app/api/matches/season/' + this.seasonService.getSeasonActive().year, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
+    });
+  }
+
+  getMatchById(matchId: number): Observable<Match> {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._access_token = currentUser && currentUser.access_token;
+    return this.http.get<Match>('http://lahmp.app/api/matches/' + matchId, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }

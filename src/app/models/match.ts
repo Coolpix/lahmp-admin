@@ -11,4 +11,5 @@ export class Match {
   goals: Array<Goal>;
   assists: Array<Assist>;
   season: Season;
+  data: any;
 }
