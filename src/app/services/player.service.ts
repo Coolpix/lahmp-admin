@@ -21,6 +21,14 @@ export class PlayerService {
     });
   }
 
+  getPlayersById(playerId: number): Observable<Players> {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._access_token = currentUser && currentUser.access_token;
+    return this.http.get<Players>('http://lahmp.app/api/players/' + playerId, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
+    });
+  }
+
   getPlayersByTeam(teamId: number): Observable<Players> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;

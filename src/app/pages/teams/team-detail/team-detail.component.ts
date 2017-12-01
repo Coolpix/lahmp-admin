@@ -84,7 +84,8 @@ export class TeamDetailComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         for (let i = 0; i < this.model.players.length; i++) {
-          this.playerService.updatePlayer(this.model.players[i], this.seasonActive.players[i].name, this.seasonActive.players[i].photo, this.seasonActive.id, [], [], params['idteam']).subscribe(
+          debugger;
+          this.playerService.updatePlayer(this.model.players[i].id, this.model.players[i].name, this.model.players[i].photo, this.seasonActive.id, this.model.players[i].goals, this.model.players[i].assists, params['idteam']).subscribe(
             data => {
               swal({
                 position: 'top-right',

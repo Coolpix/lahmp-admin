@@ -15,7 +15,7 @@
                 <h5 class="m-t-30 m-b-10">Jugador:</h5>
                 <select class="selectpicker" multiple data-style="form-control btn-secondary" name="players"
                         [(ngModel)]="model.players" #name="ngModel" data-placeholder="Seleccione jugador">
-                  <option *ngFor="let player of seasonActive.players" [value]="player.id">{{ player.name }}</option>
+                  <option *ngFor="let player of seasonActive.players" [value]="player">{{ player.name }}</option>
                 </select>
               </div>
             </div>

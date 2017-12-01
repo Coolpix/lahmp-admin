@@ -11,6 +11,8 @@ import {TeamService} from '../../services/team.service';
 import {GoalService} from '../../services/goal.service';
 import swal from 'sweetalert2';
 import {AssistService} from '../../services/assist.service';
+import {Player} from '../../models/player';
+import {Goal} from '../../models/goal';
 
 @Component({
   selector: 'app-match-detail',
@@ -20,6 +22,19 @@ import {AssistService} from '../../services/assist.service';
 
 //TODO: usar el unsubscribe en todos los subscribe de los demas componentes
 export class MatchDetailComponent implements OnInit, OnDestroy {
+  get goals(): Array<Goal> {
+    return this._goals;
+  }
+
+  set goals(value: Array<Goal>) {
+    this._goals = value;
+  }
+  get playersVisitor(): Array<Player> {
+    return this._playersVisitor;
+  }
+  get playersLocal(): Array<Player> {
+    return this._playersLocal;
+  }
   get match(): Match {
     return this._match;
   }
@@ -30,7 +45,9 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
 
   private sub: any;
   private _match: Match;
-
+  private _playersLocal: Array<Player>;
+  private _playersVisitor: Array<Player>;
+  private _goals: Array<Goal>;
   private seasonId: number;
   private roundId: number;
   private matchId: number;
@@ -60,10 +77,46 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
         this.matchService.getMatchById(params['idmatch']).subscribe(
           result => {
             this.match = result.data;
+            this.goalService.getGoalsByMatch(this.matchId).subscribe(
+              goals => {
+                debugger;
+                this.goals = goals.data;
+                for (let i = 0; i < this.goals.length; i++) {
+                  if (this.goals[i].assist !== null) {
+                    this.assistService.getAssistsById(this.goals[i].assist.id).subscribe(
+                      assist => {
+                        this.goals[i].assistPlayer = '';
+                        this.goals[i].assistPlayer = assist.data.player.name;
+                      },
+                      err => {
+                        console.log('Error recuperando el jugador');
+                      }
+                    );
+                  }
+                }
+              },
+              err => {
+                console.log('Error recuperando los goles del partido ' + this.matchId);
+              }
+            );
             for (let i = 0; i < this.match.teams.length; i++) {
               this.teamService.getTeamById(this.match.teams[i].id).subscribe(
                 teams => {
                   this.match.teams[i] = teams.data;
+                  this.playerService.getPlayersByTeam(this.match.teams[i].id).subscribe(
+                    players => {
+                      players.data.map(player => {
+                        if (player.team.id === this.match.teams[0].id) {
+                          //TODO: Los goles deben de ser los del partido
+                          this._playersLocal = players.data.filter(playerLocal => playerLocal.team.id === this.match.teams[0].id);
+                        } else {
+                          this._playersVisitor = players.data.filter(playerVisitor => playerVisitor.team.id === this.match.teams[1].id);
+                        }
+                      });
+                    }, err => {
+                      console.log('Error recuperando los jugadores del equipo ' + this.match.teams[i].id);
+                    }
+                  );
                   this.scriptService.loadScripts('../../assets/js/jquery.dataTables.min.js');
                   setTimeout(function(){
                     scriptService.loadScripts('../../assets/js/dataTables.buttons.min.js');
@@ -112,7 +165,7 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
     this.goalService.saveGoal(this.matchId, this.model.playerGoal, teamId, this.seasonId).subscribe(
       result => {
         if (parseInt(this.model.playerAssist) > 0) {
-          this.assistService.saveAssist(result.id, teamId, this.model.playerAssist, this.matchId, this.seasonId).subscribe(
+          this.assistService.saveAssist(result.data.id, teamId, this.model.playerAssist, this.matchId, this.seasonId).subscribe(
             assist => {
               swal({
                 position: 'top-right',
@@ -149,6 +202,7 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
     );
   }
 
+  //TODO: Comprobar si esto va bien
   goalDisabled(): boolean {
     return parseInt(this.model.playerGoal) === 0 || this.model.playerGoal === undefined || parseInt(this.model.playerAssist) === 0 || this.model.playerAssist === undefined || this.model.playerGoal === this.model.playerAssist;
   }

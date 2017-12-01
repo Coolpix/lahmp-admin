@@ -94,6 +94,7 @@ export class PlayersComponent implements OnInit {
     );
   }
 
+  //TODO: Borrar goles y asistencias del jugador que se borra (parece que lo hace bien, comprobar)
   deletePlayer(playerId: number, playerName: string) {
     const playerService = this.playerService;
     const self = this;

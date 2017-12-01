@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {SeasonService} from './season.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Players} from '../models/players';
+import {Goals} from "../models/goals";
 
 @Injectable()
 export class GoalService {
@@ -13,18 +14,26 @@ export class GoalService {
     private seasonService: SeasonService) {
   }
 
-  getGoals(): Observable<Players> {
+  getGoals(): Observable<Goals> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.get<Players>('http://lahmp.app/api/goals/season/' + this.seasonService.getSeasonActive().year, {
+    return this.http.get<Goals>('http://lahmp.app/api/goals/season/' + this.seasonService.getSeasonActive().year, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }
 
-  getGoalsByTeam(teamId: number): Observable<Players> {
+  getGoalsByTeam(teamId: number): Observable<Goals> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.get<Players>('http://lahmp.app/api/goals/team/' + teamId, {
+    return this.http.get<Goals>('http://lahmp.app/api/goals/team/' + teamId, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
+    });
+  }
+
+  getGoalsByMatch(matchId: number): Observable<Goals> {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._access_token = currentUser && currentUser.access_token;
+    return this.http.get<Goals>('http://lahmp.app/api/goals/match/' + matchId, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }

@@ -8,5 +8,5 @@ export class Player {
   photo: string;
   goals: Array<Goal>;
   assists: Array<Assist>;
-  teams: Array<Team>;
+  team: Team;
 }

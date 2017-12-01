@@ -12,6 +12,6 @@ export class Team {
   players: Array<Player>;
   matches: Array<Match>;
   goals: Array<Goal>;
-  assits: Array<Assist>;
+  assists: Array<Assist>;
   data: any;
 }

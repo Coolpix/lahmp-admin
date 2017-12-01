@@ -3,6 +3,8 @@ import {Observable} from 'rxjs/Observable';
 import {SeasonService} from './season.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Players} from '../models/players';
+import {Assists} from "../models/assists";
+import {Assist} from "../models/assist";
 
 @Injectable()
 export class AssistService {
@@ -13,18 +15,26 @@ export class AssistService {
     private seasonService: SeasonService) {
   }
 
-  getAssists(): Observable<Players> {
+  getAssists(): Observable<Assists> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.get<Players>('http://lahmp.app/api/assists/season/' + this.seasonService.getSeasonActive().year, {
+    return this.http.get<Assists>('http://lahmp.app/api/assists/season/' + this.seasonService.getSeasonActive().year, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }
 
-  getAssistsByTeam(teamId: number): Observable<Players> {
+  getAssistsById(assistId: number): Observable<Assist> {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._access_token = currentUser && currentUser.access_token;
-    return this.http.get<Players>('http://lahmp.app/api/assists/team/' + teamId, {
+    return this.http.get<Assist>('http://lahmp.app/api/assists/' + assistId, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
+    });
+  }
+
+  getAssistsByTeam(teamId: number): Observable<Assist> {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this._access_token = currentUser && currentUser.access_token;
+    return this.http.get<Assist>('http://lahmp.app/api/assists/team/' + teamId, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this._access_token),
     });
   }

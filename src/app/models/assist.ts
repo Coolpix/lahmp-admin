@@ -11,4 +11,5 @@ export class Assist {
   player: Player;
   match: Match;
   season: Season;
+  data: any;
 }

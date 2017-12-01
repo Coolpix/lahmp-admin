@@ -37,7 +37,7 @@ export class TeamsComponent implements OnInit {
   ngOnInit() {
     this.teamService.getTeams().subscribe(
       result => {
-        this._teams = result.data;
+        this.teams = result.data.filter(team => team.goals.filter( goal => goal.player !== null));
       },
       err => {
         console.log(err);
