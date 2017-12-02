@@ -79,17 +79,15 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
             this.match = result.data;
             this.goalService.getGoalsByMatch(this.matchId).subscribe(
               goals => {
-                debugger;
                 this.goals = goals.data;
                 for (let i = 0; i < this.goals.length; i++) {
                   if (this.goals[i].assist !== null) {
                     this.assistService.getAssistsById(this.goals[i].assist.id).subscribe(
                       assist => {
-                        this.goals[i].assistPlayer = '';
                         this.goals[i].assistPlayer = assist.data.player.name;
                       },
                       err => {
-                        console.log('Error recuperando el jugador');
+                        console.log('Error recuperando la asistencia ' + this.goals[i].assist.id);
                       }
                     );
                   }
@@ -108,10 +106,12 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
                       players.data.map(player => {
                         if (player.team.id === this.match.teams[0].id) {
                           //TODO: Los goles deben de ser los del partido
-                          this._playersLocal = players.data.filter(playerLocal => playerLocal.team.id === this.match.teams[0].id);
+                          this._playersLocal = players.data;
                         } else {
-                          this._playersVisitor = players.data.filter(playerVisitor => playerVisitor.team.id === this.match.teams[1].id);
+                          this._playersVisitor = players.data;
                         }
+                        player.goals = this.goals.filter(goal => goal.player.id === player.id);
+                        console.log('El jugador ' + player.name + ' ha metido ' + player.goals.length + ' goles');
                       });
                     }, err => {
                       console.log('Error recuperando los jugadores del equipo ' + this.match.teams[i].id);
@@ -202,7 +202,6 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
     );
   }
 
-  //TODO: Comprobar si esto va bien
   goalDisabled(): boolean {
     return parseInt(this.model.playerGoal) === 0 || this.model.playerGoal === undefined || parseInt(this.model.playerAssist) === 0 || this.model.playerAssist === undefined || this.model.playerGoal === this.model.playerAssist;
   }

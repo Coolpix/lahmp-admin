@@ -66,7 +66,8 @@
                 <h5 class="m-t-30 m-b-10">Asistente:</h5>
                 <select class="selectpicker" data-style="form-control btn-secondary" name="playerAssist"
                         [(ngModel)]="model.playerAssist" #name="ngModel" data-placeholder="Seleccione jugador">
-                  <option [value]="0">Sin asistente</option>
+                  <option [value]=0>Seleccione Jugador</option>
+                  <option [value]=-1>Sin asistente</option>
                   <option *ngFor="let player of match?.teams[1].players" [value]="player.id">{{ player.name }}</option>
                 </select>
               </div>
@@ -135,8 +136,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let playerLocal of playersLocal">
-                    <td> {{ playerLocal.id }}</td>
+                  <tr *ngFor="let playerLocal of playersLocal; let i = index">
+                    <td> {{ i+1 }}</td>
                     <td>
                       <a>
                         <img src="../assets/images/users/keko.jpeg" alt="name" width="40" class="img-circle"/> {{ playerLocal.name}}</a>
@@ -172,8 +173,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let playerVisitor of playersVisitor">
-                    <td> {{ playerVisitor.id }}</td>
+                  <tr *ngFor="let playerVisitor of playersVisitor; let i = index">
+                    <td> {{ i+1 }}</td>
                     <td>
                       <a>
                         <img src="../assets/images/users/keko.jpeg" alt="name" width="40" class="img-circle"/> {{ playerVisitor.name}}</a>
@@ -206,8 +207,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let goal of goals">
-                  <td> {{ goal?.id }}</td>
+                <tr *ngFor="let goal of goals; let i = index">
+                  <td> {{ i+1 }}</td>
                   <td>
                     <a>
                       <img src="../assets/images/users/keko.jpeg" alt="name" width="40" class="img-circle"/> {{ goal?.player?.name}}</a>
