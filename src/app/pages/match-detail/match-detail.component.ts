@@ -13,6 +13,7 @@ import swal from 'sweetalert2';
 import {AssistService} from '../../services/assist.service';
 import {Player} from '../../models/player';
 import {Goal} from '../../models/goal';
+import {Assist} from "../../models/assist";
 
 @Component({
   selector: 'app-match-detail',
@@ -28,6 +29,13 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
 
   set goals(value: Array<Goal>) {
     this._goals = value;
+  }
+  get assists(): Array<Assist> {
+    return this._assists;
+  }
+
+  set assists(value: Array<Assist>) {
+    this._assists = value;
   }
   get playersVisitor(): Array<Player> {
     return this._playersVisitor;
@@ -48,6 +56,7 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
   private _playersLocal: Array<Player>;
   private _playersVisitor: Array<Player>;
   private _goals: Array<Goal>;
+  private _assists: Array<Assist>;
   private seasonId: number;
   private roundId: number;
   private matchId: number;
@@ -84,6 +93,7 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
                   if (this.goals[i].assist !== null) {
                     this.assistService.getAssistsById(this.goals[i].assist.id).subscribe(
                       assist => {
+                        this.assists = assist.data;
                         this.goals[i].assistPlayer = assist.data.player.name;
                       },
                       err => {
@@ -105,13 +115,15 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
                     players => {
                       players.data.map(player => {
                         if (player.team.id === this.match.teams[0].id) {
-                          //TODO: Los goles deben de ser los del partido
                           this._playersLocal = players.data;
                         } else {
                           this._playersVisitor = players.data;
                         }
                         player.goals = this.goals.filter(goal => goal.player.id === player.id);
+                        //TODO: Arreglar asistencias de jugador en partido.
+                        player.assists = this.assists.filter(assist => assist.player.id === player.id);
                         console.log('El jugador ' + player.name + ' ha metido ' + player.goals.length + ' goles');
+                        console.log('El jugador ' + player.name + ' ha assistido ' + player.assists.length + ' veces');
                       });
                     }, err => {
                       console.log('Error recuperando los jugadores del equipo ' + this.match.teams[i].id);
