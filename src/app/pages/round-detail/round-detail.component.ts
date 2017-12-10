@@ -45,6 +45,10 @@ export class RoundDetailComponent implements OnInit {
           this.matchService.getMatchesByRound(params['idround']).subscribe(
             result => {
               this.matches = result.data;
+              this.matches.map(match => {
+                match.goalsLocal = match.goals.filter(goal => goal.team_id === match.teams[0].id).length;
+                match.goalsVisitor = match.goals.filter(goal => goal.team_id === match.teams[1].id).length;
+              });
               this.scriptService.loadScripts('../../assets/js/jquery.dataTables.min.js');
               setTimeout(function(){
                 scriptService.loadScripts('../../assets/js/dataTables.buttons.min.js');

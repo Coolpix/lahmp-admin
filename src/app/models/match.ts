@@ -12,4 +12,6 @@ export class Match {
   assists: Array<Assist>;
   season: Season;
   data: any;
+  goalsLocal: number;
+  goalsVisitor: number;
 }
