@@ -12,4 +12,5 @@ export class Goal {
   assist: Assist;
   season: Season;
   assistPlayer: string;
+  team_id: number;
 }

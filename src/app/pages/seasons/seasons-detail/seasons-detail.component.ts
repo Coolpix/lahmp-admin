@@ -4,6 +4,7 @@ import {SeasonService} from '../../../services/season.service';
 import {Season} from '../../../models/season';
 import swal from 'sweetalert2';
 import {RoundService} from '../../../services/round.service';
+import {PlayerService} from '../../../services/player.service';
 
 @Component({
   selector: 'app-seasons-detail',
@@ -17,6 +18,7 @@ export class SeasonsDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private seasonService: SeasonService,
+              private playerService: PlayerService,
               private roundService: RoundService) { }
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class SeasonsDetailComponent implements OnInit {
             this.seasonActive = result.data;
           },
           error => {
-            console.log(error);
+            console.log('Error recuperando la temporada. ' + error);
           }
         );
       } else {

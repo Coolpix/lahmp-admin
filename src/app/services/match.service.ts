@@ -46,6 +46,7 @@ export class MatchService {
       'season': seasonId,
       'teams': [teamLocal, teamVisitor],
       'round': roundId,
+      'finish': false,
       'goals': [],
       'assists': []
     };

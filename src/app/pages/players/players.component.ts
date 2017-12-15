@@ -36,7 +36,6 @@ export class PlayersComponent implements OnInit {
     const scriptService = this.scriptService;
     this.playerService.getPlayers().subscribe(
       result => {
-        debugger;
         this._players = result.data;
         this.scriptService.loadScripts('../../assets/js/jquery.dataTables.min.js');
         setTimeout(function(){
